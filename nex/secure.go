@@ -3,30 +3,41 @@ package nex
 import (
 	"fmt"
 	"os"
+	"strconv"
 
-	nex "github.com/PretendoNetwork/nex-go"
+	nex "github.com/PretendoNetwork/nex-go/v2"
 	"github.com/PretendoNetwork/pokken-tournament/globals"
 )
 
 func StartSecureServer() {
-	globals.SecureServer = nex.NewServer()
-	globals.SecureServer.SetPRUDPVersion(1)
-	globals.SecureServer.SetPRUDPProtocolMinorVersion(3)
-	globals.SecureServer.SetDefaultNEXVersion(nex.NewNEXVersion(3, 10, 0))
-	globals.SecureServer.SetKerberosPassword(globals.KerberosPassword)
-	globals.SecureServer.SetAccessKey("6ef3adf1")
+	globals.SecureServer = nex.NewPRUDPServer()
 
-	globals.SecureServer.On("Data", func(packet *nex.PacketV1) {
-		request := packet.RMCRequest()
+	globals.SecureEndpoint = nex.NewPRUDPEndPoint(1)
+	globals.SecureEndpoint.IsSecureEndPoint = true
+	globals.SecureEndpoint.ServerAccount = globals.SecureServerAccount
+	globals.SecureEndpoint.AccountDetailsByPID = globals.AccountDetailsByPID
+	globals.SecureEndpoint.AccountDetailsByUsername = globals.AccountDetailsByUsername
+	globals.SecureServer.BindPRUDPEndPoint(globals.SecureEndpoint)
+
+	globals.SecureServer.LibraryVersions.SetDefault(nex.NewLibraryVersion(3, 10, 0))
+	globals.SecureServer.AccessKey = "6ef3adf1"
+
+	globals.SecureEndpoint.OnData(func(packet nex.PacketInterface) {
+		request := packet.RMCMessage()
 
 		fmt.Println("==Pokkén Tournament - Secure==")
-		fmt.Printf("Protocol ID: %d\n", request.ProtocolID())
-		fmt.Printf("Method ID: %d\n", request.MethodID())
-		fmt.Println("===============")
+		fmt.Printf("Protocol ID: %d\n", request.ProtocolID)
+		fmt.Printf("Method ID: %d\n", request.MethodID)
+		fmt.Println("====================")
+	})
+
+	globals.SecureEndpoint.OnError(func(err *nex.Error) {
+		globals.Logger.Error(err.Error())
 	})
 
 	registerCommonSecureServerProtocols()
-	registerSecureServerNEXProtocols()
 
-	globals.SecureServer.Listen(fmt.Sprintf(":%s", os.Getenv("PN_POKKENTOURNAMENT_SECURE_SERVER_PORT")))
+	port, _ := strconv.Atoi(os.Getenv("PN_POKKENTOURNAMENT_SECURE_SERVER_PORT"))
+
+	globals.SecureServer.Listen(port)
 }
