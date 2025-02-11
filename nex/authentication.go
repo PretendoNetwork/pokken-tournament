@@ -24,6 +24,7 @@ func StartAuthenticationServer() {
 
 	globals.AuthenticationServer.LibraryVersions.SetDefault(nex.NewLibraryVersion(3, 10, 0))
 	globals.AuthenticationServer.AccessKey = "6ef3adf1"
+	globals.AuthenticationServer.ByteStreamSettings.UseStructureHeader = true
 
 	globals.AuthenticationEndpoint.OnData(func(packet nex.PacketInterface) {
 		request := packet.RMCMessage()

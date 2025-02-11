@@ -21,6 +21,7 @@ func StartSecureServer() {
 
 	globals.SecureServer.LibraryVersions.SetDefault(nex.NewLibraryVersion(3, 10, 0))
 	globals.SecureServer.AccessKey = "6ef3adf1"
+	globals.SecureServer.ByteStreamSettings.UseStructureHeader = true
 
 	globals.SecureEndpoint.OnData(func(packet nex.PacketInterface) {
 		request := packet.RMCMessage()
