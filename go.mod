@@ -12,6 +12,7 @@ require (
 	github.com/PretendoNetwork/plogger-go v1.0.4
 	github.com/joho/godotenv v1.5.1
 	github.com/lib/pq v1.10.9
+	github.com/minio/minio-go/v7 v7.0.85
 	google.golang.org/grpc v1.56.1
 )
 
@@ -31,7 +32,6 @@ require (
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/minio/md5-simd v1.1.2 // indirect
-	github.com/minio/minio-go/v7 v7.0.85 // indirect
 	github.com/rasky/go-lzo v0.0.0-20200203143853-96a758eda86e // indirect
 	github.com/rs/xid v1.6.0 // indirect
 	github.com/superwhiskers/crunch/v3 v3.5.7 // indirect

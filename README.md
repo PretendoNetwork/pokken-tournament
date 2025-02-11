@@ -73,12 +73,15 @@ All configuration options are handled via environment variables
 
 `.env` files are supported
 
-| Name                                    | Description                                                                                                            | Required                                      |
-|-----------------------------------------|------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| `PN_POKKENTOURNAMENT_KERBEROS_PASSWORD`          | Password used as part of the internal server data in Kerberos tickets                                                  | No (Default password `password` will be used) |
-| `PN_POKKENTOURNAMENT_AUTHENTICATION_SERVER_PORT` | Port for the authentication server                                                                                     | Yes                                           |
-| `PN_POKKENTOURNAMENT_SECURE_SERVER_HOST`         | Host name for the secure server (should point to the same address as the authentication server)                        | Yes                                           |
-| `PN_POKKENTOURNAMENT_SECURE_SERVER_PORT`         | Port for the secure server                                                                                             | Yes                                           |
-| `PN_POKKENTOURNAMENT_ACCOUNT_GRPC_HOST`          | Host name for your account server gRPC service                                                                         | Yes                                           |
-| `PN_POKKENTOURNAMENT_ACCOUNT_GRPC_PORT`          | Port for your account server gRPC service                                                                              | Yes                                           |
-| `PN_POKKENTOURNAMENT_ACCOUNT_GRPC_API_KEY`       | API key for your account server gRPC service                                                                           | No (Assumed to be an open gRPC API)           |
+| Name | Description | Required |
+| ---- | ----------- | -------- |
+| `PN_POKKENTOURNAMENT_AUTHENTICATION_SERVER_PORT` | Port for the authentication server | Yes |
+| `PN_POKKENTOURNAMENT_SECURE_SERVER_HOST` | Host name for the secure server (should point to the same address as the authentication server) | Yes |
+| `PN_POKKENTOURNAMENT_SECURE_SERVER_PORT` | Port for the secure server | Yes |
+| `PN_POKKENTOURNAMENT_ACCOUNT_GRPC_HOST` | Host name for your account server gRPC service | Yes |
+| `PN_POKKENTOURNAMENT_ACCOUNT_GRPC_PORT` | Port for your account server gRPC service | Yes |
+| `PN_POKKENTOURNAMENT_ACCOUNT_GRPC_API_KEY` | API key for your account server gRPC service | No (Assumed to be an open gRPC API) |
+| `PN_POKKENTOURNAMENT_POSTGRES_URI` | URI to PostgreSQL server (include credentials) | Yes |
+| `PN_POKKENTOURNAMENT_S3_ENDPOINT` | Domain pointing to S3/S3-compatible storage server (MinIO) | Yes |
+| `PN_POKKENTOURNAMENT_S3_ACCESS_KEY` | Access key to interact with S3 server | Yes |
+| `PN_POKKENTOURNAMENT_S3_ACCESS_SECRET` | Access secret to interact with S3 server | Yes |
