@@ -5,6 +5,7 @@ import (
 
 	"github.com/PretendoNetwork/nex-go/v2/types"
 	common_datastore "github.com/PretendoNetwork/nex-protocols-common-go/v2/datastore"
+	local_common_datastore "github.com/PretendoNetwork/pokken-tournament/nex/datastore"
 	common_globals "github.com/PretendoNetwork/nex-protocols-common-go/v2/globals"
 	common_match_making "github.com/PretendoNetwork/nex-protocols-common-go/v2/match-making"
 	common_match_making_ext "github.com/PretendoNetwork/nex-protocols-common-go/v2/match-making-ext"
@@ -19,9 +20,9 @@ import (
 	nat_traversal "github.com/PretendoNetwork/nex-protocols-go/v2/nat-traversal"
 	ranking "github.com/PretendoNetwork/nex-protocols-go/v2/ranking"
 	secure "github.com/PretendoNetwork/nex-protocols-go/v2/secure-connection"
-	"github.com/PretendoNetwork/pokken-tournament/database"
 	"github.com/PretendoNetwork/pokken-tournament/globals"
 	local_ranking "github.com/PretendoNetwork/pokken-tournament/nex/ranking"
+	match_making_types "github.com/PretendoNetwork/nex-protocols-go/v2/match-making/types"
 )
 
 func registerCommonSecureServerProtocols() {
@@ -37,7 +38,7 @@ func registerCommonSecureServerProtocols() {
 	globals.SecureEndpoint.RegisterServiceProtocol(natTraversalProtocol)
 	common_nat_traversal.NewCommonProtocol(natTraversalProtocol)
 
-	matchmakingManager := common_globals.NewMatchmakingManager(globals.SecureEndpoint, database.Postgres)
+	matchmakingManager := common_globals.NewMatchmakingManager(globals.SecureEndpoint, globals.PostgresDB)
 
 	matchMakingProtocol := match_making.NewProtocol()
 	globals.SecureEndpoint.RegisterServiceProtocol(matchMakingProtocol)
@@ -53,6 +54,7 @@ func registerCommonSecureServerProtocols() {
 	globals.SecureEndpoint.RegisterServiceProtocol(matchmakeExtensionProtocol)
 	commonMatchmakeExtensionProtocol := common_matchmake_extension.NewCommonProtocol(matchmakeExtensionProtocol)
 	commonMatchmakeExtensionProtocol.SetManager(matchmakingManager)
+	commonMatchmakeExtensionProtocol.CleanupMatchmakeSessionSearchCriterias = func(searchCriterias types.List[match_making_types.MatchmakeSessionSearchCriteria]) {}
 
 	rankingProtocol := ranking.NewProtocol()
 	globals.SecureEndpoint.RegisterServiceProtocol(rankingProtocol)
@@ -65,4 +67,6 @@ func registerCommonSecureServerProtocols() {
 	commonDatastoreProtocol := common_datastore.NewCommonProtocol(datastoreProtocol)
 	commonDatastoreProtocol.S3Bucket = os.Getenv("PN_POKKENTOURNAMENT_S3_BUCKET")
 	commonDatastoreProtocol.SetMinIOClient(globals.MinIOClient)
+	local_common_datastore.NewDatastoreProtocol(commonDatastoreProtocol)
+	globals.DatastoreCommon = commonDatastoreProtocol
 }

@@ -81,7 +81,11 @@ All configuration options are handled via environment variables
 | `PN_POKKENTOURNAMENT_ACCOUNT_GRPC_HOST` | Host name for your account server gRPC service | Yes |
 | `PN_POKKENTOURNAMENT_ACCOUNT_GRPC_PORT` | Port for your account server gRPC service | Yes |
 | `PN_POKKENTOURNAMENT_ACCOUNT_GRPC_API_KEY` | API key for your account server gRPC service | No (Assumed to be an open gRPC API) |
+| `PN_POKKENTOURNAMENT_FRIENDS_GRPC_HOST` | Host name for your friends server gRPC service | Yes |
+| `PN_POKKENTOURNAMENT_FRIENDS_GRPC_PORT` | Port for your friends server gRPC service | Yes |
+| `PN_POKKENTOURNAMENT_FRIENDS_GRPC_API_KEY` | API key for your friends server gRPC service | No (Assumed to be an open gRPC API) |
 | `PN_POKKENTOURNAMENT_POSTGRES_URI` | URI to PostgreSQL server (include credentials) | Yes |
 | `PN_POKKENTOURNAMENT_S3_ENDPOINT` | Domain pointing to S3/S3-compatible storage server (MinIO) | Yes |
 | `PN_POKKENTOURNAMENT_S3_ACCESS_KEY` | Access key to interact with S3 server | Yes |
 | `PN_POKKENTOURNAMENT_S3_ACCESS_SECRET` | Access secret to interact with S3 server | Yes |
+| `PN_POKKENTOURNAMENT_S3_BUCKET` | Bucket name on S3 server | Yes |

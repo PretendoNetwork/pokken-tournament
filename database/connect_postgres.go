@@ -9,14 +9,13 @@ import (
 	"github.com/PretendoNetwork/pokken-tournament/globals"
 )
 
-var Postgres *sql.DB
-
 func ConnectPostgres() {
 	var err error
 
-	Postgres, err = sql.Open("postgres", os.Getenv("PN_POKKENTOURNAMENT_POSTGRES_URI"))
+	globals.PostgresDB, err = sql.Open("postgres", os.Getenv("PN_POKKENTOURNAMENT_POSTGRES_URI"))
 	if err != nil {
 		globals.Logger.Critical(err.Error())
+		panic(err)
 	}
 
 	globals.Logger.Success("Connected to Postgres!")
