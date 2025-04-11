@@ -5,3 +5,4 @@ log
 go.work
 *.test
 go.work.sum
+*.sh

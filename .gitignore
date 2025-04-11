@@ -33,3 +33,4 @@ log
 *.yaml
 *.env
 .DS_Store
+*.sh
