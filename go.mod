@@ -7,8 +7,8 @@ toolchain go1.23.3
 require (
 	github.com/PretendoNetwork/grpc-go v1.0.1
 	github.com/PretendoNetwork/nex-go/v2 v2.1.1
-	github.com/PretendoNetwork/nex-protocols-common-go/v2 v2.2.2
-	github.com/PretendoNetwork/nex-protocols-go/v2 v2.2.0
+	github.com/PretendoNetwork/nex-protocols-common-go/v2 v2.3.0
+	github.com/PretendoNetwork/nex-protocols-go/v2 v2.2.1
 	github.com/PretendoNetwork/plogger-go v1.0.4
 	github.com/joho/godotenv v1.5.1
 	github.com/lib/pq v1.10.9
@@ -17,6 +17,7 @@ require (
 )
 
 require (
+	github.com/PretendoNetwork/grpc/go v0.0.0-20250123103241-5fb484bf544d // indirect
 	github.com/PretendoNetwork/pq-extended v1.0.0 // indirect
 	github.com/dolthub/maphash v0.1.0 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
@@ -43,5 +44,5 @@ require (
 	golang.org/x/term v0.29.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20230629202037-9506855d4529 // indirect
-	google.golang.org/protobuf v1.31.0 // indirect
+	google.golang.org/protobuf v1.35.1 // indirect
 )
