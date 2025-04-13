@@ -6,7 +6,7 @@ toolchain go1.23.3
 
 require (
 	github.com/PretendoNetwork/grpc-go v1.0.1
-	github.com/PretendoNetwork/nex-go/v2 v2.1.1
+	github.com/PretendoNetwork/nex-go/v2 v2.1.3
 	github.com/PretendoNetwork/nex-protocols-common-go/v2 v2.3.0
 	github.com/PretendoNetwork/nex-protocols-go/v2 v2.2.1
 	github.com/PretendoNetwork/plogger-go v1.0.4
